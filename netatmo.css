@@ -4,7 +4,7 @@
 .netatmo .loading,
 .netatmo .loadTimer,
 .netatmo .updated {
-  display: inline-block;
+  display: none;
 }
 .netatmo svg.loading {
   height: .6em;
@@ -76,6 +76,8 @@
 .netatmo .bubbles .module .secondary {
   text-align: center;
   width: 5em;
+  display: none;
+  visibility: hidden;
 }
 .netatmo .bubbles .module .secondary .CO2 .visual {
   border-radius: 1em;
@@ -83,6 +85,8 @@
   height: .1em;
   margin: 1.5em auto;
   width: .1em;
+  display: none;
+  visibility: hidden;
 }
 .netatmo .bubbles .module .secondary .CO2 .good {
   background-color: #32cd32;
@@ -100,6 +104,8 @@
   display: inline-block;
 }
 .netatmo .bubbles .module .data {
+  display: none;
+  visibility: hidden;
   width: 8em;
 }
 .netatmo .bubbles .module .data .flash {
