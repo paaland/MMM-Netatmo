@@ -4,7 +4,7 @@
 .netatmo .loading,
 .netatmo .loadTimer,
 .netatmo .updated {
-  display: none;
+  /*display: none;*/
 }
 .netatmo svg.loading {
   height: .6em;
@@ -26,10 +26,10 @@
   stroke-width: 10;
 }
 .netatmo svg.loadTimer {
-  height: .5em;
+  height: 1em;
   margin: .2em 0;
   vertical-align: middle;
-  width: .5em;
+  width: 1em;
 }
 .netatmo svg.loadTimer .loader {
   fill: #000000;

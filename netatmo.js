@@ -5,6 +5,12 @@
  * MIT Licensed.
  */
  /* global $, Q, moment, Module, Log */
+
+window.error = function (err) {
+   console.error((new Date).toUTCString() + ' uncaughtException:', JSON.stringify(err.message));
+   console.error(err.stack);
+}; 
+
 Module.register('netatmo', {
   // default config,
   defaults: {
@@ -40,19 +46,25 @@ Module.register('netatmo', {
     this.updateLoad();
   },
   updateLoad: function() {
-    // Log.info(this.name + " refresh triggered");
-    var that = this;
-    return Q.fcall(
-      this.load.token.bind(that),
-      this.renderError.bind(that)
-    ).then(
-      this.load.data.bind(that),
-      this.renderError.bind(that)
-    ).then(
-      this.renderAll.bind(that)
-    ).done(
-      this.updateWait.bind(that)
-    );
+    // Log.info(this.name + " refresh triggered");    
+    try
+    {
+      var that = this;
+
+      return Q.fcall(
+        this.load.token.bind(that),
+        this.renderError.bind(that)
+      ).then(
+        this.load.data.bind(that),
+        this.renderError.bind(that)
+      ).then(
+        this.renderAll.bind(that)
+      ).done(
+        this.updateWait.bind(that)
+      );
+    } catch (e) {
+        Log.error('Error fetching data', e);
+    }
   },
   updateWait: function() {
     this.α++;
@@ -225,7 +237,7 @@ Module.register('netatmo', {
       if  (value <= 0) 
         return '';
 
-      Log.info('Rain: ', value);
+      Log.info('Rain: ' +value);
     }
 
     var result = $('<div/>').addClass('module').append(
